@@ -1,0 +1,40 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Resource {
+  id: ID!
+  name: String!
+}
+
+type Agent {
+  id: ID!
+  name: String!
+  iconUrl: String
+  ipAddress: String!
+  availability: String!
+  agentType: String!
+  resources: [Resource!]!
+}
+
+type Query {
+  agents: [Agent!]!
+  agent(id: Int!): Agent!
+}
+
+type Mutation {
+  createAgent(createAgentInput: CreateAgentInput!): Agent!
+  updateAgent(updateAgentInput: UpdateAgentInput!): Agent!
+  removeAgent(id: Int!): Agent!
+}
+
+input CreateAgentInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAgentInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
