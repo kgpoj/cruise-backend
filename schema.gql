@@ -29,12 +29,25 @@ type Mutation {
 }
 
 input CreateAgentInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  iconUrl: String
+  ipAddress: String!
+  availability: String!
+  agentType: String!
+  resources: [ResourceInput!]!
+}
+
+input ResourceInput {
+  id: ID!
+  name: String!
 }
 
 input UpdateAgentInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String
+  iconUrl: String
+  ipAddress: String
+  availability: String
+  agentType: String
+  resources: [ResourceInput!]
+  id: ID!
 }
