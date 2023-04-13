@@ -32,4 +32,12 @@ export class AgentsResolver {
   removeAgent(@Args('id', { type: () => Int }) id: number) {
     return this.agentsService.remove(id);
   }
+
+  @Mutation(() => Agent)
+  removeResource(
+    @Args('agentId', { type: () => String }) agentId: string,
+    @Args('resourceId', { type: () => String }) resourceId: string,
+  ) {
+    return this.agentsService.removeResourceInAgent(agentId, resourceId);
+  }
 }

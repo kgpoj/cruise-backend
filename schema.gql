@@ -26,6 +26,7 @@ type Mutation {
   createAgent(createAgentInput: CreateAgentInput!): Agent!
   updateAgent(updateAgentInput: UpdateAgentInput!): Agent!
   removeAgent(id: Int!): Agent!
+  removeResource(agentId: String!, resourceId: String!): Agent!
 }
 
 input CreateAgentInput {

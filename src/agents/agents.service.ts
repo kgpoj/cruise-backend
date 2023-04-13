@@ -43,4 +43,16 @@ export class AgentsService {
   remove(id: number) {
     return `This action removes a #${id} agent`;
   }
+
+  removeResourceInAgent(agentId: string, resourceId: string) {
+    const targetAgent = this._agents.find((agent) => agent.id === agentId);
+    this.removeResource(targetAgent, resourceId);
+    return targetAgent;
+  }
+
+  private removeResource(targetAgent: Agent, resourceId: string) {
+    targetAgent.resources = targetAgent.resources.filter(
+      (resource) => resource.id !== resourceId,
+    );
+  }
 }
