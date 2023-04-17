@@ -1,4 +1,4 @@
-import { Agent } from '../entities/agent.entity';
+import { Agent, Resource } from '../entities/agent.entity';
 
 export const mockAgentsData: Agent[] = [
   {
@@ -131,5 +131,24 @@ export const mockAgentsData: Agent[] = [
         name: 'Safari',
       },
     ],
+  },
+];
+
+export const mockResourcesData: Resource[] = [
+  {
+    id: '1',
+    name: 'Firefox',
+  },
+  {
+    id: '2',
+    name: 'Chrome',
+  },
+  {
+    id: '3',
+    name: 'Safari',
+  },
+  {
+    id: '4',
+    name: 'Ubuntu',
   },
 ];

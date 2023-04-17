@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAgentInput } from './dto/create-agent.input';
 import { UpdateAgentInput } from './dto/update-agent.input';
-import { mockAgentsData } from './mock';
+import { mockAgentsData, mockResourcesData } from './mock';
 import { Agent } from './entities/agent.entity';
 
 @Injectable()
@@ -50,6 +50,18 @@ export class AgentsService {
     return targetAgent;
   }
 
+  addResourcesInAgent(agentId: string, resourceIds: string[]) {
+    const targetAgent = this._agents.find((agent) => agent.id === agentId);
+    this.addResources(targetAgent, resourceIds);
+    return targetAgent;
+  }
+
+  private addResources(targetAgent: Agent, resourceIds: string[]) {
+    const currentResourceIds = targetAgent.resources.map((resource) => resource.id);
+    const uniqueIds = Array.from(new Set([...currentResourceIds, ...resourceIds]));
+    const newResources = uniqueIds.map((id) => mockResourcesData.find((resource) => resource.id === id));
+    targetAgent.resources = newResources;
+    }
   private removeResource(targetAgent: Agent, resourceId: string) {
     targetAgent.resources = targetAgent.resources.filter(
       (resource) => resource.id !== resourceId,
