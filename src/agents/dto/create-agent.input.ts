@@ -1,12 +1,17 @@
 import { InputType, Field, ID } from '@nestjs/graphql';
+import {
+  AgentType,
+  Availability,
+  ResourceName,
+} from '../entities/agent.entity';
 
 @InputType()
 class ResourceInput {
   @Field(() => ID)
   id: string;
 
-  @Field()
-  name: string;
+  @Field(() => ResourceName)
+  name: ResourceName;
 }
 
 @InputType()
@@ -20,11 +25,11 @@ export class CreateAgentInput {
   @Field()
   ipAddress: string;
 
-  @Field()
-  availability: string;
+  @Field(() => Availability, { defaultValue: Availability.idle })
+  availability: Availability;
 
-  @Field()
-  agentType: string;
+  @Field(() => AgentType, { defaultValue: AgentType.physical })
+  agentType: AgentType;
 
   @Field(() => [ResourceInput])
   resources: ResourceInput[];

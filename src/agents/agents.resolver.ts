@@ -40,7 +40,7 @@ export class AgentsResolver {
   ) {
     return this.agentsService.removeResourceInAgent(agentId, resourceId);
   }
-  
+
   @Mutation(() => Agent)
   addResources(
     @Args('agentId', { type: () => String }) agentId: string,

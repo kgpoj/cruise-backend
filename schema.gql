@@ -4,7 +4,14 @@
 
 type Resource {
   id: ID!
-  name: String!
+  name: ResourceName!
+}
+
+enum ResourceName {
+  firefox
+  chrome
+  safari
+  ubuntu
 }
 
 type Agent {
@@ -12,9 +19,19 @@ type Agent {
   name: String!
   iconUrl: String
   ipAddress: String!
-  availability: String!
-  agentType: String!
+  availability: Availability!
+  agentType: AgentType!
   resources: [Resource!]!
+}
+
+enum Availability {
+  building
+  idle
+}
+
+enum AgentType {
+  physical
+  virtual
 }
 
 type Query {
@@ -27,28 +44,29 @@ type Mutation {
   updateAgent(updateAgentInput: UpdateAgentInput!): Agent!
   removeAgent(id: Int!): Agent!
   removeResource(agentId: String!, resourceId: String!): Agent!
+  addResources(agentId: String!, resourceIds: [String!]!): Agent!
 }
 
 input CreateAgentInput {
   name: String!
   iconUrl: String
   ipAddress: String!
-  availability: String!
-  agentType: String!
+  availability: Availability! = idle
+  agentType: AgentType! = physical
   resources: [ResourceInput!]!
 }
 
 input ResourceInput {
   id: ID!
-  name: String!
+  name: ResourceName!
 }
 
 input UpdateAgentInput {
   name: String
   iconUrl: String
   ipAddress: String
-  availability: String
-  agentType: String
+  availability: Availability = idle
+  agentType: AgentType = physical
   resources: [ResourceInput!]
   id: ID!
 }
